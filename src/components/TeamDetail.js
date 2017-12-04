@@ -4,14 +4,20 @@ import Card from './Card';
 import CardSection from './CardSection';
 
 const TeamDetail = ({team}) => {
-  const {teamName, locationName} = team;
+  const {teamName, locationName, abbreviation} = team;
 
   return (
     <Card>
       <CardSection>
+        <View style={styles.thumbnailContainerStyle}>
+          <Image style={styles.thumbnailStyle}
+                 resizeMode='contain'
+                 source={ require('./../img/ANA.png')}
+          />
+        </View>
         <View style={styles.headerContentStyle}>
-          <Text style={styles.headerTextStyle}>{locationName}</Text>
-          <Text>{teamName}</Text>
+          <Text>{locationName}</Text>
+          <Text style={styles.headerTextStyle}>{teamName.toUpperCase()}</Text>
         </View>
       </CardSection>
     </Card>
@@ -34,7 +40,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
   }
 };
 
