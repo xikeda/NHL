@@ -23,7 +23,7 @@ class TeamList extends Component {
 
   render() {
     return (
-      <ScrollView style={{marginBottom: 5}}>
+      <ScrollView style={{marginBottom: 10}}>
         {this.renderTeams()}
       </ScrollView>
     );

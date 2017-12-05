@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Linking} from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 
 const TeamDetail = ({team}) => {
-  const {teamName, locationName, logo} = team;
+  const {teamName, locationName, logo, primeColor, officialSiteUrl} = team;
 
   return (
-    <TouchableOpacity onPress={() => console.log('Yo')}>
+    <TouchableOpacity onPress={() => Linking.openURL(officialSiteUrl)}>
       <Card>
         <CardSection>
           <View style={styles.thumbnailContainerStyle}>
