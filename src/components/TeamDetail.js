@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 
 const TeamDetail = ({team}) => {
-  const {teamName, locationName, abbreviation} = team;
+  const {teamName, locationName, logo} = team;
 
   return (
-    <Card>
-      <CardSection>
-        <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle}
-                 resizeMode='contain'
-                 source={ require('./../img/ANA.png')}
-          />
-        </View>
-        <View style={styles.headerContentStyle}>
-          <Text>{locationName}</Text>
-          <Text style={styles.headerTextStyle}>{teamName.toUpperCase()}</Text>
-        </View>
-      </CardSection>
-    </Card>
+    <TouchableOpacity onPress={() => console.log('Yo')}>
+      <Card>
+        <CardSection>
+          <View style={styles.thumbnailContainerStyle}>
+            <Image style={styles.thumbnailStyle}
+                   resizeMode='contain'
+                   source={{uri: logo}}
+            />
+          </View>
+          <View style={styles.headerContentStyle}>
+            <Text>{locationName}</Text>
+            <Text style={styles.headerTextStyle}>{teamName.toUpperCase()}</Text>
+          </View>
+        </CardSection>
+      </Card>
+    </TouchableOpacity>
   );
 };
 
