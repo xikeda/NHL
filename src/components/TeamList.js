@@ -7,8 +7,6 @@ class TeamList extends Component {
   state = { teams: [] };
 
   componentWillMount() {
-    //'https://statsapi.web.nhl.com/api/v1/teams'
-    https://api.myjson.com/bins/favjb
     axios.get('https://api.myjson.com/bins/d82mv')
       .then(response => this.setState({teams: response.data.teams }));
   }

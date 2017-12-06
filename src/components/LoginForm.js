@@ -16,17 +16,25 @@ class LoginForm extends Component {
     this.setState({ error: '', loading: true });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-    .then()
-    .catch(() => {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .catch(() => {
-          this.setState({error: 'Authentication Failed.'});
-        });
-    });
+      .then(this.onLoginSuccess.bind(this))
+      .catch(() => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(this.onLoginSuccess.bind(this))
+          .catch(this.onLoginFail.bind(this));
+      });
   }
 
   onLoginSuccess() {
+    this.setState({
+      email: '',
+      password: '',
+      loading: false,
+      error: ''
+    });
+  }
 
+  onLoginFail(){
+    this.setState({error: 'Sign in failed', loading: false});
   }
 
   renderButton() {
@@ -47,12 +55,12 @@ class LoginForm extends Component {
           <Image
           resizeMode='contain'
           source={{uri: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/09/NHL_Center_Ice.svg/1280px-NHL_Center_Ice.svg.png'}}
-          style={{height: 400, flex: 1, width: null}}
+          style={{height: 150, flex: 1, width: null}}
           />
         </CardSection>
         <CardSection>
           <Input
-            placeholder="NHLfan@gmail.com"
+            placeholder="hockeyFan@gmail.com"
             label="Email:"
             value={this.state.email}
             onChangeText={email => this.setState({email})}

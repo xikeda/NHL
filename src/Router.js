@@ -7,8 +7,8 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene>
-        <Scene key="Login" component={LoginForm} title="NHL Center Ice" inital/>
         <Scene key="TeamList" component={TeamList} title="NHL Teams" />
+        <Scene key="Login" component={LoginForm} title="NHL Center Ice" initial/>
       </Scene>
     </Router>
   );
