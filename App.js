@@ -6,11 +6,17 @@ import {
   View
 } from 'react-native';
 import firebase from 'firebase';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import configureStore from './src/components/configureStore';
 import TeamList from './src/components/TeamList';
 import Router from './src/Router';
 import Spinner from './src/components/Spinner';
 import Button from './src/components/Button';
 import LoginForm from './src/components/LoginForm';
+import reducers from './src/reducers/index';
+
+const store = configureStore();
 
 
 export default class App extends Component<{}> {
@@ -52,9 +58,11 @@ export default class App extends Component<{}> {
 
   render() {
     return (
-      <View style={{flex: 1}}>
-        <Router />
-      </View>
+      <Provider store={store}>
+        <View style={{flex: 1}}>
+          <Router />
+        </View>
+      </Provider>
     );
   }
 }
