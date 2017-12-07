@@ -12,6 +12,7 @@ import ReduxThunk from 'redux-thunk';
 import configureStore from './src/components/configureStore';
 import LoginForm from './src/components/LoginForm';
 import TeamList from './src/components/TeamList';
+import Gamelist from './src/components/GameList';
 import Router from './src/Router';
 import Spinner from './src/components/Spinner';
 import Button from './src/components/Button';

@@ -8,6 +8,7 @@ import {
   LOGIN_USER
 } from './types';
 
+
 export const emailChanged = (text) => {
   return {
     type: EMAIL_CHANGED,

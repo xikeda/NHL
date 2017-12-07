@@ -4,7 +4,7 @@ import Card from './Card';
 import CardSection from './CardSection';
 
 const TeamDetail = ({team}) => {
-  const {teamName, locationName, logo, primeColor, officialSiteUrl} = team;
+  const {teamName, locationName, logo, officialSiteUrl} = team;
 
   return (
     <TouchableOpacity onPress={() => Linking.openURL(officialSiteUrl)}>
