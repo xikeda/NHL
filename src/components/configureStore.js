@@ -1,8 +1,9 @@
 import {createStore} from 'redux';
+import ReduxThunk from 'redux-thunk';
 import reducers from '../reducers';
 
 export default function configureStore(initalState){
-  const store = createStore (reducers);
+  const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
   if(module.hot){
     module.hot.accept(() => {

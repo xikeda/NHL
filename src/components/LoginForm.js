@@ -1,51 +1,51 @@
 import React, { Component } from 'react';
-import {Image, Text} from 'react-native';
+import {View, Image, Text} from 'react-native';
 import firebase from 'firebase';
+import {connect} from 'react-redux';
 import Input from './Input';
 import Button from './Button';
 import Card from './Card';
 import CardSection from './CardSection';
 import Spinner from './Spinner';
+import {emailChanged, passwordChanged, loginUser} from '../actions';
 
 class LoginForm extends Component {
-  state = {email: '', password: '', error: '', loading: false};
-
-  onButtonPress() {
-    const {email, password} = this.state;
-
-    this.setState({ error: '', loading: true });
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(this.onLoginSuccess.bind(this))
-      .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(this.onLoginSuccess.bind(this))
-          .catch(this.onLoginFail.bind(this));
-      });
+  onEmailChange(text){
+    this.props.emailChanged(text);
   }
 
-  onLoginSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      loading: false,
-      error: ''
-    });
+  onPasswordChange(text){
+    this.props.passwordChanged(text);
   }
 
-  onLoginFail(){
-    this.setState({error: 'Sign in failed', loading: false});
+  onButtonPress(){
+    const {email, password} = this.props;
+
+    this.props.loginUser({email, password});
   }
 
   renderButton() {
-    if(this.state.loading){
-      return <Spinner size="small" />
+    if (this.props.loading) {
+      return <Spinner size="small" />;
     }
+
     return (
       <Button onPress={this.onButtonPress.bind(this)}>
-        Sign In
+        Log in
       </Button>
     );
+  }
+
+  renderError() {
+    if (this.props.error){
+      return (
+        <View style={{backgroundColor: 'white'}}>
+          <Text style={styles.errorTextStyle}>
+            {this.props.error}
+          </Text>
+        </View>
+      );
+    }
   }
 
   render() {
@@ -55,31 +55,31 @@ class LoginForm extends Component {
           <Image
           resizeMode='contain'
           source={{uri: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/09/NHL_Center_Ice.svg/1280px-NHL_Center_Ice.svg.png'}}
-          style={{height: 150, flex: 1, width: null}}
+          style={{height: 120, flex: 1, width: null}}
           />
         </CardSection>
         <CardSection>
           <Input
+            value={this.props.email}
             placeholder="hockeyFan@gmail.com"
             label="Email:"
-            value={this.state.email}
-            onChangeText={email => this.setState({email})}
+            onChangeText={this.onEmailChange.bind(this)}
           />
         </CardSection>
         <CardSection>
           <Input
+            value={this.props.password}
             secureTextEntry
             placeholder="password"
             label="Password:"
-            value={this.state.password}
-            onChangeText={password => this.setState({password})}
+            onChangeText={this.onPasswordChange.bind(this)}
           />
         </CardSection>
+
+        {this.renderError()}
+
         <CardSection>
-        <Text style={styles.errorStyle}>
-          {this.state.error}
-        </Text>
-        {this.renderButton()}
+          {this.renderButton()}
         </CardSection>
       </Card>
     );
@@ -87,11 +87,17 @@ class LoginForm extends Component {
 }
 
 const styles = {
-  errorStyle: {
+  errorTextStyle: {
+    marginTop: 8,
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
   }
 }
 
-export default LoginForm;
+const mapStateToProps = ({auth}) => {
+  const {email, password, error, loading} = auth;
+  return {email, password, error, loading};
+};
+
+export default connect(mapStateToProps, {emailChanged, passwordChanged, loginUser})(LoginForm);
