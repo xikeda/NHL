@@ -10,9 +10,11 @@ const GameDetail = ({game}) => {
     <TouchableOpacity>
       <Card>
         <TeamCardSection>
-        <Text>{teams["home"]}</Text><Text>{scores[Object.keys(scores)[1]]}</Text>
+        <Text>{teams["home"]}</Text>
+        <Text>{scores[Object.keys(scores)[1]]}</Text>
         <Text>{state}</Text>
-        <Text>{scores[Object.keys(scores)[0]]}</Text><Text>{teams["away"]}</Text>
+        <Text>{scores[Object.keys(scores)[0]]}</Text>
+        <Text>{teams["away"]}</Text>
         </TeamCardSection>
       </Card>
     </TouchableOpacity>

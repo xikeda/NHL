@@ -11,9 +11,9 @@ const RouterComponent = () => {
     <Router>
       <Scene>
         <Scene key="Login" component={LoginForm} title="NHL Center Ice" initial/>
-        <Scene key="TeamList" component={TeamList} title="NHL Teams" backTitle="Log Out" />
+        <Scene key="TeamList" component={TeamList} title="NHL Teams"/>
         <Scene key="TeamCenter" component={TeamCenter} title="Toronto Maple Leafs"/>
-        <Scene key="GameList" component={GameList} title="NHL Scoreboard" />
+        <Scene key="GameList" component={GameList} title="NHL Scoreboard"/>
       </Scene>
     </Router>
   );

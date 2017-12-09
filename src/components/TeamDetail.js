@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {View, Text, Image, TouchableOpacity, Linking} from 'react-native';
+import {Actions} from 'react-native-router-flux';
 import Card from './Card';
 import CardSection from './CardSection';
 
@@ -7,7 +8,7 @@ const TeamDetail = ({team}) => {
   const {teamName, locationName, logo, officialSiteUrl} = team;
 
   return (
-    <TouchableOpacity onPress={() => Linking.openURL(officialSiteUrl)}>
+    <TouchableOpacity onPress={() => Actions.TeamCenter({team})}>
       <Card>
         <CardSection>
           <View style={styles.thumbnailContainerStyle}>

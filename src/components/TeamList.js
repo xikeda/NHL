@@ -7,7 +7,7 @@ class TeamList extends Component {
   state = { teams: [] };
 
   componentWillMount() {
-    axios.get('https://api.myjson.com/bins/d82mv')
+    axios.get('https://api.myjson.com/bins/18u9xz')
       .then(response => this.setState({teams: response.data.teams }));
   }
 
