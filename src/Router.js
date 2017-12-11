@@ -10,10 +10,10 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene>
-        <Scene key="Login" component={LoginForm} title="NHL Center Ice" initial/>
-        <Scene key="TeamList" component={TeamList} title="NHL Teams"/>
-        <Scene key="TeamCenter" component={TeamCenter} title="Toronto Maple Leafs"/>
-        <Scene key="GameList" component={GameList} title="NHL Scoreboard"/>
+        <Scene key="Login" component={LoginForm} title="NHL Center Ice"/>
+        <Scene key="TeamList" component={TeamList} title="NHL Teams" initial/>
+        <Scene key="TeamCenter" component={TeamCenter} title="Team"/>
+        <Scene key="GameList" component={GameList} title="NHL Scoreboard" />
       </Scene>
     </Router>
   );
