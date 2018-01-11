@@ -36,7 +36,6 @@ const TeamCenter = ({team}) => {
         </TeamCardSection2>
         <MapContainer>
         <MapView
-          // Error : Must grab coordinates from Google Maps API
           style={styles.map}
           initialRegion={{
             latitude: 43.642499,
@@ -56,7 +55,6 @@ const TeamCenter = ({team}) => {
         </MapView>
         </MapContainer>
         <TeamCardSection2>
-        // Error : Must grab next game from Google Maps API
           <Text>Next home game vs Ottawa @ 7PM EST</Text>
         </TeamCardSection2>
         <TeamCardSection2>
